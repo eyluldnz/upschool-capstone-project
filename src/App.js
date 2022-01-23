@@ -8,6 +8,7 @@ import UserProfile from './components/pages/publicPage/UserProfile';
 import { useSelector } from 'react-redux';
 import MovieDetail from './components/pages/publicPage/MovieDetail';
 import NavBar from './components/pages/publicPage/baseComponent/NavBar';
+import SortFilterPage from './components/pages/publicPage/movieFilter/SortFilterPage';
 
 function App() {
 
@@ -43,6 +44,22 @@ function App() {
           element={
             <ProtectRoute auth={state.isLoading}>
               <MovieDetail />
+            </ProtectRoute>
+          }
+        />
+         <Route
+          path="/popular"
+          element={
+            <ProtectRoute auth={state.isLoading}>
+              <SortFilterPage />
+            </ProtectRoute>
+          }
+        />
+         <Route
+          path="/toprated"
+          element={
+            <ProtectRoute auth={state.isLoading}>
+              <SortFilterPage />
             </ProtectRoute>
           }
         />
