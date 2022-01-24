@@ -56,7 +56,7 @@ function App() {
           }
         />
          <Route
-          path="/toprated"
+          path="/top_rated"
           element={
             <ProtectRoute auth={state.isLoading}>
               <SortFilterPage />

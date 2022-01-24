@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, ListGroup, ListGroupItem, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
-export default function MovieCard({ movie, ...props }) {
+export default function MovieCard({ movie,widthCard, ...props }) {
 
     const navigate=useNavigate();
 
@@ -10,7 +10,7 @@ export default function MovieCard({ movie, ...props }) {
         navigate(`/movie/${movie.id}`)
     }
     const moviePoster = `https://image.tmdb.org/t/p/original/${movie["poster_path"]}`
-    return <Card style={{ width: 200, textAlign: 'center' }}  >
+    return <Card style={{ width: {widthCard}, textAlign: 'center' }}  >
         <Button>...</Button>
         <div onClick={clickCardHandler} >
         <Card.Img variant="top" src={moviePoster} height={250} />

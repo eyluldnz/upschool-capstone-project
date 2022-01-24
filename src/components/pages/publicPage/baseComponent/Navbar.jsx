@@ -27,7 +27,7 @@ function NavBar() {
                         menuVariant="dark"
                     >
                         <NavDropdown.Item onClick={() => navigate("/popular")}>Popular Movies</NavDropdown.Item>
-                        <NavDropdown.Item onClick={() => navigate("/toprated")}>Top Rated Movies</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => navigate("/top_rated")}>Top Rated Movies</NavDropdown.Item>
 
 
                     </NavDropdown>
