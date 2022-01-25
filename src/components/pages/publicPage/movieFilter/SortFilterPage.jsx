@@ -23,8 +23,6 @@ export default function SortFilterPage() {
     dateFilter: {
 
     }
-
-
   })
 
   useEffect(() => {
@@ -44,7 +42,7 @@ export default function SortFilterPage() {
     fetch(`https://api.themoviedb.org/3/movie${globalLocation.pathname}?api_key=38c02880f9f69c49ba83e5b023f7dc67&page=${loadCounter}`).
       then(res => res.json()).
       then(data => {
-        if  (filter.filterGenre.length > 0 || filter.sort[0]!==null || filter.dateFilter.end!==undefined || filter.dateFilter.start!==undefined )  {
+        if (filter.filterGenre.length > 0 || filter.sort[0] !== null || filter.dateFilter.end !== undefined || filter.dateFilter.start !== undefined) {
           filteredData(movies.concat(data?.results));
         }
         else {
@@ -102,7 +100,7 @@ export default function SortFilterPage() {
 
     if (filter.sort[0] !== null) {
 
-      newMovies = sortedMovie(newMovies.length>0?newMovies:fecthedMovie, Number(filter.sort[0]))
+      newMovies = sortedMovie(newMovies.length > 0 ? newMovies : fecthedMovie, Number(filter.sort[0]))
     }
     else {
       newMovies = movies;
@@ -139,10 +137,10 @@ export default function SortFilterPage() {
   }
 
   const searchHandler = () => {
-     fetch(`https://api.themoviedb.org/3/movie${globalLocation.pathname}?api_key=38c02880f9f69c49ba83e5b023f7dc67&page=${loadCounter}`).
+    fetch(`https://api.themoviedb.org/3/movie${globalLocation.pathname}?api_key=38c02880f9f69c49ba83e5b023f7dc67&page=${loadCounter}`).
       then(res => res.json()).
       then(data => {
-        if  (filter.filterGenre.length > 0 || filter.sort[0]!==null || filter.dateFilter.end!==undefined || filter.dateFilter.start!==undefined  )  {
+        if (filter.filterGenre.length > 0 || filter.sort[0] !== null || filter.dateFilter.end !== undefined || filter.dateFilter.start !== undefined) {
           filteredData(data?.results);
         }
         else {
@@ -150,31 +148,44 @@ export default function SortFilterPage() {
         }
 
       });
-  
+
   }
 
   console.log(movies)
   return <div>
-    <div className="container">
+    <div className="container my-5 ">
       <div className="row">
-        <div className="col-3 bg-light">
-          <div className="container">
-            <div className="row">
-              <div className="col-12">
-                <select className="form-select" onChange={handleSelect}>
+        <div className="col-3 bg-light ">
+          <div className="container ">
+            <div className="row border">
+              <div className="col-12 my-3">
+                Sort By:
+                <select className="form-select my-3" onChange={handleSelect}>
                   <option selected>Open this select menu</option>
                   <option value={1}>{"A->Z"}</option>
                   <option value={2}>{"Z->A"}</option>
                   <option value={3}>{"Asc By Popular"}</option>
                   <option value={4}>{"Des By Popular"}</option>
-                  <option value={5}>{"Desc by Release"}</option>
                   <option value={6}>{"Asc by Release"}</option>
+                  <option value={5}>{"Desc by Release"}</option>
 
                 </select>
               </div>
-              <div className="col-12">Filter By
-                <DatePicker onChange={(date) => handlerDate(date, "start")} />
-                <DatePicker onChange={(date) => handlerDate(date, "end")} />
+              <div className="col-12 mt-3">Filter By
+                <div className="container mb-3">
+                  <div className="row">
+                    <div className="col-12 my-3">
+                      From:
+                      <DatePicker onChange={(date) => handlerDate(date, "start")} />
+                    </div>
+                    <div className="col-12">
+                      To:
+                      <DatePicker onChange={(date) => handlerDate(date, "end")} />
+                    </div>
+                  </div>
+
+                </div>
+
                 <GenreContainer setFilter={setFilter} filterData={filter} />
               </div>
               <button onClick={searchHandler}>Search</button>
