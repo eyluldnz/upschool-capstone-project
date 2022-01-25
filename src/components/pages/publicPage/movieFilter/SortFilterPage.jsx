@@ -12,18 +12,19 @@ export default function SortFilterPage() {
   const [movies, setMovies] = useState([]);
   const [loadCounter, setLoadCounter] = useState(1);
   const [lastLoadPage, setLastLoadPage] = useState(0);
+  const [isFillFilter, setIsFillFilter] = useState(false);
   const [filter, setFilter] = useState({
     sort: [
 
     ],
-    filter: [
-      //12, 14
+    filterGenre: [
+
     ],
-    dateFilter:{
-      
+    dateFilter: {
+
     }
-     
-    
+
+
   })
 
   useEffect(() => {
@@ -35,6 +36,7 @@ export default function SortFilterPage() {
       });
 
   }, []);
+
   useEffect(() => {
 
     let fetchedData = [];
@@ -42,7 +44,7 @@ export default function SortFilterPage() {
     fetch(`https://api.themoviedb.org/3/movie${globalLocation.pathname}?api_key=38c02880f9f69c49ba83e5b023f7dc67&page=${loadCounter}`).
       then(res => res.json()).
       then(data => {
-        if (filter.filter.length > 0) {
+        if  (filter.filterGenre.length > 0 || filter.sort[0]!==null || filter.dateFilter.end!==undefined || filter.dateFilter.start!==undefined )  {
           filteredData(movies.concat(data?.results));
         }
         else {
@@ -51,36 +53,33 @@ export default function SortFilterPage() {
 
       });
 
-
-
-
   }, [loadCounter]);
 
   const handleSelect = (e) => {
 
-    setFilter({...filter,filter:[12,14]})
+    setFilter({ ...filter, sort: e.target.value })
 
   }
-  const handlerDate=(date,type)=>{
-    if(type==='start'){
-      setFilter({...filter,dateFilter:{ ...filter.dateFilter,start:date.toLocaleDateString().replace(".","/")}})
+  const handlerDate = (date, type) => {
+    if (type === 'start') {
+      setFilter({ ...filter, dateFilter: { ...filter.dateFilter, start: date.toLocaleDateString().replace(".", "/") } })
     }
-    else if(type==='end'){
-      setFilter({...filter,dateFilter:{ ...filter.dateFilter,end:date.toLocaleDateString().replace(".","/")}})
+    else if (type === 'end') {
+      setFilter({ ...filter, dateFilter: { ...filter.dateFilter, end: date.toLocaleDateString().replace(".", "/") } })
     }
-    
+
 
   }
 
   const filteredData = (fecthedMovie = movies) => {
     let newMovies = [];
-    if (filter.filter.length > 0) {
+    if (filter.filterGenre.length > 0) {
 
 
       for (let j = 0; j < fecthedMovie.length; j++) {
         let isAll = false;
-        for (let i = 0; i < filter.filter.length; i++) {
-          if (fecthedMovie[j].genre_ids.includes(filter.filter[i])) {
+        for (let i = 0; i < filter.filterGenre.length; i++) {
+          if (fecthedMovie[j].genre_ids.includes(filter.filterGenre[i])) {
             isAll = true;
           }
           else {
@@ -93,24 +92,65 @@ export default function SortFilterPage() {
         }
 
       }
-      
-    }
-    if(filter.dateFilter.end && filter.dateFilter.start){
 
-      newMovies=newMovies.filter(movie=>movie.release_date?.split('-').reverse().join('/')>filter.dateFilter.start && movie.release_date?.split('-').reverse().join('/')<=filter.dateFilter.end)
-
-      //movie["release_date"]?.split('-').reverse().join('/')
-      
     }
-    else{
-      newMovies=movies;
+    if (filter.dateFilter.end && filter.dateFilter.start) {
+
+      newMovies = newMovies.filter(movie => movie.release_date?.split('-').reverse().join('/') > filter.dateFilter.start && movie.release_date?.split('-').reverse().join('/') <= filter.dateFilter.end)
+
+    }
+
+    if (filter.sort[0] !== null) {
+
+      newMovies = sortedMovie(newMovies.length>0?newMovies:fecthedMovie, Number(filter.sort[0]))
+    }
+    else {
+      newMovies = movies;
     }
     setMovies([...newMovies])
 
   }
 
+  const sortedMovie = (movies, sortType) => {
+    switch (sortType) {
+      case 1:
+        return movies.sort((a, b) => a["original_title"].localeCompare(b["original_title"]));
+      case 2:
+        return movies.sort((a, b) => a["original_title"].localeCompare(b["original_title"])).reverse();
+      case 3:
+        return movies.sort((a, b) => a["popularity"].localeCompare(b["popularity"]));
+      case 4:
+        return movies.sort((a, b) => a["popularity"].localeCompare(b["popularity"])).reverse();
+      case 5:
+        return movies.sort((a, b) => {
+          return new Date(a["release_date"]) > new Date(b["release_date"]) ? -1 : 1
+
+        }).reverse();
+
+      case 6:
+        return movies.sort((a, b) => {
+          return new Date(a["release_date"]) > new Date(b["release_date"]) ? -1 : 1
+
+        }).reverse().reverse();
+
+      default: return movies;
+    }
+
+  }
+
   const searchHandler = () => {
-    filteredData();
+     fetch(`https://api.themoviedb.org/3/movie${globalLocation.pathname}?api_key=38c02880f9f69c49ba83e5b023f7dc67&page=${loadCounter}`).
+      then(res => res.json()).
+      then(data => {
+        if  (filter.filterGenre.length > 0 || filter.sort[0]!==null || filter.dateFilter.end!==undefined || filter.dateFilter.start!==undefined  )  {
+          filteredData(data?.results);
+        }
+        else {
+          setMovies(data?.results);
+        }
+
+      });
+  
   }
 
   console.log(movies)
@@ -123,19 +163,19 @@ export default function SortFilterPage() {
               <div className="col-12">
                 <select className="form-select" onChange={handleSelect}>
                   <option selected>Open this select menu</option>
-                  <option value="asc">{"A->Z"}</option>
-                  <option value="desc">{"Z->A"}</option>
-                  <option value="ascByPop">{"Asc By Popular"}</option>
-                  <option value="desc">{"Des By Popular"}</option>
-                  <option value="desc">{"Asc by Release"}</option>
-                  <option value="desc">{"Desc by Release"}</option>
+                  <option value={1}>{"A->Z"}</option>
+                  <option value={2}>{"Z->A"}</option>
+                  <option value={3}>{"Asc By Popular"}</option>
+                  <option value={4}>{"Des By Popular"}</option>
+                  <option value={5}>{"Desc by Release"}</option>
+                  <option value={6}>{"Asc by Release"}</option>
 
                 </select>
               </div>
               <div className="col-12">Filter By
-              <DatePicker  onChange={(date) => handlerDate(date,"start")} />
-              <DatePicker  onChange={(date) => handlerDate(date,"end")} />
-                <GenreContainer />
+                <DatePicker onChange={(date) => handlerDate(date, "start")} />
+                <DatePicker onChange={(date) => handlerDate(date, "end")} />
+                <GenreContainer setFilter={setFilter} filterData={filter} />
               </div>
               <button onClick={searchHandler}>Search</button>
             </div>
