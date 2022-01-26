@@ -7,13 +7,14 @@ import SearchForm from './SearchForm';
 import SearchContainer from '../publicPage/searchComponents/SearchContainer'
 import { useSelector } from 'react-redux';
 
+
 export default function Home() {
 
-    const { searchResult} = useSelector(state => state.searchData);
+    const { searchResult } = useSelector(state => state.searchData);
 
     const APIKEY = "api_key=38c02880f9f69c49ba83e5b023f7dc67";
 
-   
+
 
     return (
 
@@ -23,7 +24,7 @@ export default function Home() {
                     <SearchForm />
                 </div>
                 {
-                    searchResult.length > 0 ? <SearchContainer/> :
+                    searchResult.length > 0 ? <SearchContainer /> :
                         <>  <div className="col-12 my-5" style={{ overflowX: 'overlay' }}>
                             <DiscoverMovie />
                         </div>
@@ -36,6 +37,7 @@ export default function Home() {
                 }
 
             </div>
+            
         </div>
 
     )

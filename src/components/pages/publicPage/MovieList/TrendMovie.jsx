@@ -35,7 +35,7 @@ export default function TrendMovie() {
             ))}
         </ButtonGroup>
         <div style={{ overflowX: 'overlay' }}>
-            <ListGroup horizontal={'sm'}>
+            <ListGroup horizontal={'sm'} style={{height:330}}>
                 {
                     data?.data?.results?.map(data => <ListGroup.Item><MovieCard movie={data} /></ListGroup.Item>)
                 }

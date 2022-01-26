@@ -155,10 +155,10 @@ export default function SortFilterPage() {
   return <div>
     <div className="container my-5 ">
       <div className="row">
-        <div className="col-3 bg-light ">
+        <div className=" col-sm-12 col-md-3 bg-light ">
           <div className="container ">
             <div className="row border">
-              <div className="col-12 my-3">
+              <div className="col-sm-12 my-3">
                 Sort By:
                 <select className="form-select my-3" onChange={handleSelect}>
                   <option selected>Open this select menu</option>
@@ -171,7 +171,7 @@ export default function SortFilterPage() {
 
                 </select>
               </div>
-              <div className="col-12 mt-3">Filter By
+              <div className="col-sm-12 mt-3">Filter By
                 <div className="container mb-3">
                   <div className="row">
                     <div className="col-12 my-3">
@@ -192,7 +192,7 @@ export default function SortFilterPage() {
             </div>
           </div>
         </div>
-        <div className="col-9 bg-light" >
+        <div className=" sol-sm-12 col-md-9 bg-light" >
           <div className="container" style={{ overflowX: 'overlay', height: 750 }}>
             <div className="row">
               {

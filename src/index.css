@@ -45,7 +45,17 @@ code {
 }
 
 @media (max-width: 625px) {
-  .login-page-container  {
+  .login-page-container {
     margin-top: 35% !important;
   }
+}
+
+.custom-card {
+  perspective: 1000px;
+}
+
+.add-transition img {
+  width: 200px;
+  height: 300px;
+  border-radius: 10px;
 }

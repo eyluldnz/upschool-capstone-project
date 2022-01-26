@@ -24,7 +24,7 @@ export default function GenreContainer({ setFilter, filterData, ...props }) {
     setFilter({ ...newFilter });
   }
 
-  return <div className='col-12'>
+  return <div className='col-sm-12'>
     <div className="btn-group d-inline" role="group" aria-label="Basic checkbox toggle button group">
       <div className="container text-center">
         <div className="row">
