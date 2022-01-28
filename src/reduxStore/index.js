@@ -4,17 +4,19 @@ import logger from 'redux-logger';
 import storage from 'redux-persist/lib/storage'; //default localStorage
 import authenticationReducer from "./authentication";
 import searchDataReducer from "./searchDataReducer";
+import userReducer from "./userReducer";
 
 const rootReducer=combineReducers({
     authentication:authenticationReducer,
-    searchData:searchDataReducer
+    searchData:searchDataReducer,
+    user:userReducer
 });
 
 const persistConfig={
     key:'root',
     storage,
     
-    whitelist:['authentication','searchData']
+    whitelist:['authentication','searchData','user']
 }
 
 const persistedReducer=persistReducer(persistConfig,rootReducer);

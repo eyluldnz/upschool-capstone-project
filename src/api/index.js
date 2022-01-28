@@ -18,3 +18,5 @@ export const fetchMovieCredits=(movieId)=>BASE_AXIOS.get(`/movie/${movieId}/cred
 export const fetcRecommandation=(movieid)=>BASE_AXIOS.get(`/movie/${movieid}/recommendations?api_key=38c02880f9f69c49ba83e5b023f7dc67`);
 
 export const fetchReview=(movieId)=>BASE_AXIOS.get(`/movie/${movieId}/reviews?api_key=38c02880f9f69c49ba83e5b023f7dc67`);
+
+export const fetchGenres=()=>BASE_AXIOS.get('/genre/movie/list?api_key=38c02880f9f69c49ba83e5b023f7dc67');

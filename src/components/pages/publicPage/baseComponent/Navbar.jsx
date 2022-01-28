@@ -6,6 +6,7 @@ import { Search, XLg } from 'react-bootstrap-icons';
 import { useSelector } from 'react-redux';
 import { logout } from '../../../../reduxStore/authentication';
 import { useDispatch } from 'react-redux';
+import NavbarUserSegment from './NavbarUserSegment';
 
 function NavBar() {
     const navigate = useNavigate();
@@ -14,17 +15,17 @@ function NavBar() {
     const { isLoading } = useSelector(state => state.authentication);
     const dispatch = useDispatch();
 
-    return <Navbar variant="dark" bg="dark" expand='xl'>
+    return <Navbar variant="light" bg="light" expand='xl'>
         <Container >
 
             <Navbar.Brand onClick={() => navigate("/")}>UpSchool Capstone</Navbar.Brand>
             <Navbar.Toggle />
-            <Navbar.Collapse id="navbar-dark-example">
+            <Navbar.Collapse id="navbar-light-example">
                 <Nav>
                     <NavDropdown
                         id="nav-dropdown-dark-example"
                         title="Movies"
-                        menuVariant="dark"
+                        menuVariant="light"
                     >
                         <NavDropdown.Item onClick={() => navigate("/popular")}>Popular Movies</NavDropdown.Item>
                         <NavDropdown.Item onClick={() => navigate("/top_rated")}>Top Rated Movies</NavDropdown.Item>
@@ -34,17 +35,15 @@ function NavBar() {
                 </Nav>
             </Navbar.Collapse>
 
-            <Container className="mx-5">
+            <Container >
                 <Navbar.Collapse style={{ float: 'right' }}>
                     {
-                        isLoading ? <Link to='/profile' className='mx-5'>
-                            <Image style={{ width: 50, borderRadius: 50, }} src="https://joeschmoe.io/api/v1/random" />
-                        </Link> : null
+                        isLoading ?<NavbarUserSegment/>: null
                     }
 
-                    <Nav className='mx-5'>
+                    <Nav className='mx-3'>
                         <NavDropdown
-                            id="nav-dropdown-dark-example"
+                            id="nav-dropdown-light-example"
                             title={clickDataList ? <XLg /> : <Search />}
                             menuVariant="dark"
                             onClick={() => setClickDataList(prev => !prev)}
