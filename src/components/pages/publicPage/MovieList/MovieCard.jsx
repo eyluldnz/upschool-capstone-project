@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Card, ListGroup, ListGroupItem, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
@@ -8,11 +8,14 @@ import BookmarkIcon from '@material-ui/icons/Bookmark';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import {addFavFilm,removeFavFilm,addSeenFilm,removeSeenFilm} from '../../../../reduxStore/userReducer'
+import { ThemeContext } from '../../../../contexts/ThemeContext';
 
 
 export default function MovieCard({ movie, widthCard, ...props }) {
 
     const { seenList, favList } = useSelector(state => state.user);
+
+    const {themeName}=useContext(ThemeContext)
 
     const dispatch = useDispatch();
 
@@ -54,7 +57,7 @@ export default function MovieCard({ movie, widthCard, ...props }) {
                 <img src={moviePoster} width={250} height={380} />
 
             </CardImageContainer>
-            <CardContent className='add-transition'>
+            <CardContent  className='add-transition'>
                 <div className="container">
                     <div className="row">
                         <div className="col-12 mb-3" onClick={clickCardHandler}>

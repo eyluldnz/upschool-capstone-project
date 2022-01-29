@@ -22,5 +22,9 @@ const TableFilter = styled(FormSelect)`
   
 `
 
+const TableRow=styled.tr`
+ background-color:${props=>props.theme.trColor}
+`
 
-export { TableContainer, TableFilter, FilterOption }
+
+export { TableContainer, TableFilter, FilterOption,TableRow }

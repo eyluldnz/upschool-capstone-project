@@ -1,3 +1,4 @@
+import React, { useContext } from 'react';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import ProtectRoute from './components/pages/ProtectRoute';
@@ -9,15 +10,24 @@ import { useSelector } from 'react-redux';
 import MovieDetail from './components/pages/publicPage/MovieDetail';
 import NavBar from './components/pages/publicPage/baseComponent/NavBar';
 import SortFilterPage from './components/pages/publicPage/movieFilter/SortFilterPage';
+import { ThemeProvider } from 'styled-components';
+import { ThemeContext, ThemeContextProvider } from './contexts/ThemeContext';
+import { styledTheme } from './components/styledComponents/styledTheme'
 
 function App() {
 
   const state = useSelector(state => state.authentication);
 
-  console.log(state);
+  const { themeName } = useContext(ThemeContext);
 
   return (
     <div className="App">
+     
+
+      
+      <ThemeProvider theme={styledTheme[themeName]}>
+
+     
       <NavBar />
       <Routes>
         <Route path="/login" element={<LoginPage />} />
@@ -65,7 +75,8 @@ function App() {
         />
 
       </Routes>
-
+      </ThemeProvider>
+      
     </div>
   );
 }

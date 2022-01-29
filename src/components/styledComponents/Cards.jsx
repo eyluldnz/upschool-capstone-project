@@ -13,7 +13,7 @@ const CardContent = styled.div`
     left:0;
     width:100%;
     height:100% !important;
-    background:rgba(0, 0, 0, 0.4);
+    background:${(props=>props.theme.cards.backgroundColor)};
     padding:90px 20px;
     position:absolute;
     box-sizing:border-box;

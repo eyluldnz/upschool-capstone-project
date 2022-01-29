@@ -1,3 +1,4 @@
+import { Navbar } from "react-bootstrap";
 import styled from "styled-components";
 
 
@@ -19,4 +20,8 @@ const IconCount = styled.div`
     right:-15px;
 `
 
-export { IconContainer, IconCount }
+const CustomNavbar=styled(Navbar)`
+background:${(props=>props.theme.navbarBackground)};
+`
+
+export { IconContainer, IconCount,CustomNavbar }

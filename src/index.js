@@ -9,6 +9,7 @@ import store, { persistor } from "./reduxStore/index";
 import { PersistGate } from 'redux-persist/integration/react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import {ReactQueryDevtools} from 'react-query/devtools'
+import {ThemeContextProvider} from '../src/contexts/ThemeContext'
 
 const queryClient=new QueryClient();
 
@@ -22,7 +23,9 @@ ReactDOM.render(
 
         
           <QueryClientProvider client={queryClient}>
+          <ThemeContextProvider>
             <App />
+            </ThemeContextProvider>
             <ReactQueryDevtools/>
           </QueryClientProvider>
 
