@@ -21,7 +21,7 @@ function App() {
   const { themeName } = useContext(ThemeContext);
 
   return (
-    <div className="App">
+    <div>
      
 
       

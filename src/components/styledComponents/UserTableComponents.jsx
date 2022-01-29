@@ -5,8 +5,9 @@ import { FormSelect } from "react-bootstrap";
 
 const TableContainer = styled(Table)`
     margin-top:50px;
-    background:orange;
     border-radius:20px;     
+    background:${props=>props.theme.trColor} !important;
+    color:${props=>props.theme.itemColor};
  
 `
 
@@ -18,12 +19,11 @@ const FilterOption = styled.option`
 `
 const TableFilter = styled(FormSelect)`
     border-radius:20px; 
-  
-  
+
 `
 
 const TableRow=styled.tr`
- background-color:${props=>props.theme.trColor}
+ background:${props=>props.theme.trColor};
 `
 
 

@@ -4,6 +4,7 @@ import GenreContainer from './GenreContainer';
 import MovieCard from '../MovieList/MovieCard';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import {StyledDiv,DivButtons} from '../../../styledComponents/DivStyledColor'
 
 export default function SortFilterPage() {
 
@@ -42,7 +43,7 @@ export default function SortFilterPage() {
     fetch(`https://api.themoviedb.org/3/movie${globalLocation.pathname}?api_key=38c02880f9f69c49ba83e5b023f7dc67&page=${loadCounter}`).
       then(res => res.json()).
       then(data => {
-        if (filter.filterGenre.length > 0 || filter.sort[0] !== null || filter.dateFilter.end !== undefined || filter.dateFilter.start !== undefined) {
+        if (filter.filterGenre.length > 0 || filter.sort[0] !== undefined || filter.dateFilter.end !== undefined || filter.dateFilter.start !== undefined) {
           filteredData(movies.concat(data?.results));
         }
         else {
@@ -116,9 +117,15 @@ export default function SortFilterPage() {
       case 2:
         return movies.sort((a, b) => a["original_title"].localeCompare(b["original_title"])).reverse();
       case 3:
-        return movies.sort((a, b) => a["popularity"].localeCompare(b["popularity"]));
+        return movies.sort((a, b) => {
+          return new Number(a["popularity"]) > new Number(b["popularity"]) ? -1 : 1
+
+        }).reverse().reverse();
       case 4:
-        return movies.sort((a, b) => a["popularity"].localeCompare(b["popularity"])).reverse();
+        return  movies.sort((a, b) => {
+          return new Number(a["popularity"]) > new Number(b["popularity"]) ? -1 : 1
+
+        }).reverse();
       case 5:
         return movies.sort((a, b) => {
           return new Date(a["release_date"]) > new Date(b["release_date"]) ? -1 : 1
@@ -155,10 +162,10 @@ export default function SortFilterPage() {
   return <div>
     <div className="container my-5 ">
       <div className="row">
-        <div className=" col-sm-12 col-md-3 bg-light ">
-          <div className="container ">
-            <div className="row border">
-              <div className="col-sm-12 my-3">
+        <div className="col-sm-12 col-md-12 col-lg-3 ">
+          <StyledDiv className="container ">
+            <StyledDiv className="row ">
+              <StyledDiv className="col-sm-12 my-3">
                 Sort By:
                 <select className="form-select my-3" onChange={handleSelect}>
                   <option selected>Open this select menu</option>
@@ -170,29 +177,29 @@ export default function SortFilterPage() {
                   <option value={5}>{"Desc by Release"}</option>
 
                 </select>
-              </div>
-              <div className="col-sm-12 mt-3">Filter By
-                <div className="container mb-3">
-                  <div className="row">
-                    <div className="col-12 my-3">
+              </StyledDiv>
+              <StyledDiv className="col-sm-12 mt-3">Filter By
+                <StyledDiv className="container mb-3">
+                  <StyledDiv className="row">
+                    <StyledDiv className="col-sm-12 my-3">
                       From:
                       <DatePicker onChange={(date) => handlerDate(date, "start")} />
-                    </div>
-                    <div className="col-12">
+                    </StyledDiv>
+                    <StyledDiv className="col-sm-12">
                       To:
                       <DatePicker onChange={(date) => handlerDate(date, "end")} />
-                    </div>
-                  </div>
+                    </StyledDiv>
+                  </StyledDiv>
 
-                </div>
+                </StyledDiv>
 
                 <GenreContainer setFilter={setFilter} filterData={filter} />
-              </div>
-              <button onClick={searchHandler}>Search</button>
-            </div>
-          </div>
+              </StyledDiv>
+              <DivButtons style={{marginLeft:'30%'}} onClick={searchHandler}>Search</DivButtons>
+            </StyledDiv>
+          </StyledDiv>
         </div>
-        <div className=" sol-sm-12 col-md-9 bg-light" >
+        <div className=" col-sm-12 col-md-12 col-lg-9 mt-2" >
           <div className="container" style={{ overflowX: 'overlay', height: 750 }}>
             <div className="row">
               {
@@ -201,7 +208,8 @@ export default function SortFilterPage() {
             </div>
 
           </div>
-          <button onClick={() => setLoadCounter(prev => prev + 1)}>Load More</button>
+          
+          <DivButtons onClick={() => setLoadCounter(prev => prev + 1)}>Load More</DivButtons>
         </div>
 
       </div>

@@ -3,12 +3,12 @@ import React from 'react';
 export default function GenreContainer({ setFilter, filterData, ...props }) {
 
   const filterList = [
-    { value: 12, name: "Action" },
+    { value: 28, name: "Action" },
     { value: 12, name: "Adventure" },
-    { value: 12, name: "Comedy" },
-    { value: 12, name: "Romance" },
-    { value: 12, name: "Drama" },
-    { value: 12, name: "Crime" },
+    { value: 35, name: "Comedy" },
+    { value: 10749, name: "Romance" },
+    { value: 18, name: "Drama" },
+    { value: 80, name: "Crime" },
   ]
 
   //{ ...filter, filter: [12, 14], sort: e.target.value }
@@ -42,7 +42,7 @@ export default function GenreContainer({ setFilter, filterData, ...props }) {
                   }}
                 />
 
-                <label className="btn btn-outline-primary" for={`btnCheck${indis+1}`}>{filter.name}</label>
+                <label className="btn btn-outline-dark" for={`btnCheck${indis+1}`}>{filter.name}</label>
               </div>
 
             ))

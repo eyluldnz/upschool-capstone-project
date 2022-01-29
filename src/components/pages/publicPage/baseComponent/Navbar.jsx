@@ -1,5 +1,6 @@
-import React, { useState,useContext } from 'react';
-import { Routes, Route, Link, useNavigate } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { Image } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { Search, XLg } from 'react-bootstrap-icons';
 import { useSelector } from 'react-redux';
@@ -7,64 +8,80 @@ import { logout } from '../../../../reduxStore/authentication';
 import { useDispatch } from 'react-redux';
 import NavbarUserSegment from './NavbarUserSegment';
 import ThemeChanger from './ThemeChanger';
-import {CustomNavbar} from '../../../styledComponents/NavbarIcons'
+import { CustomNavbar, CustamNavbarDrop, CustamNavbarDropItem, CustomSearch, CustomX,CustomToggle } from '../../../styledComponents/NavbarIcons'
+import {DivButtons} from '../../../styledComponents/DivStyledColor'
+import { ThemeContext } from '../../../../contexts/ThemeContext'
 
-import {ThemeContext} from '../../../../contexts/ThemeContext'
 
-function NavBar({...props}) {
-    const {themeName}=useContext(ThemeContext);
+
+function NavBar({ ...props }) {
+    const { themeName } = useContext(ThemeContext);
     const navigate = useNavigate();
     const [clickDataList, setClickDataList] = useState(false);
     const { history } = useSelector(state => state.searchData);
     const { isLoading } = useSelector(state => state.authentication);
     const dispatch = useDispatch();
-  
+
     return <CustomNavbar variant="light" expand='xl'>
         <Container >
 
-            <Navbar.Brand onClick={() => navigate("/")}>UpSchool Capstone</Navbar.Brand>
-            <Navbar.Toggle />
+            <Navbar.Brand onClick={() => navigate("/")}> <Image style={{ width: 100, borderRadius: 20, }} src="https://i.dlpng.com/static/png/6639915_preview.png" /></Navbar.Brand>
+            <CustomToggle />
             <Navbar.Collapse id="navbar-light-example">
                 <Nav>
-                    <NavDropdown
-                        id="nav-dropdown-dark-example"
+                    <CustamNavbarDrop
+                        align={{ lg: 'start' }}
                         title="Movies"
-                        menuVariant="light"
+
                     >
-                        <NavDropdown.Item onClick={() => navigate("/popular")}>Popular Movies</NavDropdown.Item>
-                        <NavDropdown.Item onClick={() => navigate("/top_rated")}>Top Rated Movies</NavDropdown.Item>
+                        <CustamNavbarDropItem onClick={() => navigate("/popular")}>Popular Movies</CustamNavbarDropItem>
+                        <CustamNavbarDropItem onClick={() => navigate("/top_rated")}>Top Rated Movies</CustamNavbarDropItem>
 
 
-                    </NavDropdown>
+                    </CustamNavbarDrop>
                 </Nav>
             </Navbar.Collapse>
 
             <Container >
                 <Navbar.Collapse style={{ float: 'right' }}>
                     {
-                        isLoading ?<NavbarUserSegment/>: null
+                        isLoading ? <NavbarUserSegment /> : null
                     }
 
-                    <Nav className='mx-3'>
-                        <ThemeChanger/>
-                        <NavDropdown
-                            id="nav-dropdown-light-example"
-                            title={clickDataList ? <XLg /> : <Search />}
-                            menuVariant="dark"
-                            onClick={() => setClickDataList(prev => !prev)}
-                        >
-                            {history.map(item => <NavDropdown.Item >{item}</NavDropdown.Item>)}
+                    <Nav className='mx-1'>
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-2 mt-2">
+                                    <ThemeChanger />
+                                </div>
+                                <div className="col-2 me-2 ">
+
+                                    <NavDropdown
+                                        className='pb-2'
+                                        id="nav-dropdown-light-example"
+                                        title={clickDataList ? <CustomX /> : <CustomSearch />}
+                                        menuVariant="dark"
+                                        onClick={() => setClickDataList(prev => !prev)}
+                                    >
+                                        {history.map(item => <NavDropdown.Item >{item}</NavDropdown.Item>)}
 
 
 
-                        </NavDropdown>
-                        {
-                            isLoading ? <button onClick={() => {
-                                dispatch(logout());
-                 } }>
-                                Logout
-                            </button> : null
-                        }
+                                    </NavDropdown>
+                                </div>
+                                <div className="col-6 ms-3 pt-1 mt-1">
+                                    {
+                                        isLoading ? <DivButtons onClick={() => {
+                                            dispatch(logout());
+                                        }}>
+                                            Logout
+                                        </DivButtons> : null
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+
                     </Nav>
                 </Navbar.Collapse>
             </Container>

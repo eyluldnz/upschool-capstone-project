@@ -19,10 +19,10 @@ export default function UserProfile() {
     const [selectValue, setSelectValue] = useState(0);
     const [userFilms, setUserfilms] = useState([]);
 
-    
+
     useEffect(() => {
-       setUserfilms(Array.from(new Set(user.seenList.seenFilms.concat(user.favList.favFilms).map(s => s.id))).map(
-        id => (user.seenList.seenFilms.concat(user.favList.favFilms).find(s => s.id === id))))
+        setUserfilms(Array.from(new Set(user.seenList.seenFilms.concat(user.favList.favFilms).map(s => s.id))).map(
+            id => (user.seenList.seenFilms.concat(user.favList.favFilms).find(s => s.id === id))))
 
     }, [user])
 
@@ -76,66 +76,69 @@ export default function UserProfile() {
         }
     }
 
-        const handleSelect = (e) => {
+    const handleSelect = (e) => {
 
-            setSelectValue(e.target.value);
+        setSelectValue(e.target.value);
 
-        }
-
-
-        if (isLoading) {
-            return <h1>Yükleniyor</h1>
-        }
-        return (
-            <div className='container' style={{ bottom: 0, maxHeight: '100%' }}>
-                <div className="row">
-                    <div className="col-12 mt-5">
-                        <TableFilter onChange={handleSelect}>
-                            <FilterOption value={0}>Select</FilterOption>
-                            <FilterOption value={1}>Closest Release Date</FilterOption>
-                            <FilterOption value={2}>Favourites</FilterOption>
-                            <FilterOption value={3}>SeenList</FilterOption>
-
-                        </TableFilter>
-                        <TableContainer>
-
-                            <thead>
-                                <tr>
-                                    <th>Film ID</th>
-                                    <th>Title</th>
-                                    <th>Genre</th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                {
-                                    userFilms?.map(movie => (<tr>
-                                        <td>{movie.id}</td>
-                                        <td>{movie["original_title"]}</td>
-                                        {/* <td>{movie["genres_id"].map(id=>(<i>{genres?.find(genre => genre.id === id).name},</i>))}</td> */}
-                                        <td>{movie["release_date"]?.split('-').reverse().join('/')}</td>
-                                        <td>
-
-                                            {user.favList.favFilms.some(film => film.id === movie.id) ? <FavoriteIcon onClick={(e) => clickFavButtons(e, "removeFav", movie.id, movie)} /> :
-                                                <FavoriteBorderIcon onClick={(e) => clickFavButtons(e, "addFav", movie.id, movie)} />}
-
-
-                                            {user.seenList.seenFilms.some(film => film.id === movie.id) ? <BookmarkIcon onClick={(e) => clickSeenButtons(e, "removeSeen", movie.id, movie)} /> :
-                                                <BookmarkBorderIcon onClick={(e) => clickSeenButtons(e, "addSeen", movie.id, movie)} />}
-
-                                        </td>
-
-                                    </tr>))
-                                }
-
-                            </tbody>
-                        </TableContainer>
-
-                    </div>
-                </div>
-
-            </div>
-        )
     }
+
+
+    if (isLoading) {
+        return <h1>Yükleniyor</h1>
+    }
+    console.log(data)
+    return (
+        <div className='container' style={{ bottom: 0, maxHeight: '100%' }}>
+            <div className="row">
+                <div className="col-12 mt-5">
+                    <TableFilter onChange={handleSelect}>
+                        <FilterOption value={0}>Select</FilterOption>
+                        <FilterOption value={1}>Closest Release Date</FilterOption>
+                        <FilterOption value={2}>Favourites</FilterOption>
+                        <FilterOption value={3}>SeenList</FilterOption>
+
+                    </TableFilter>
+                    <TableContainer>
+
+                        <thead>
+                            <tr>
+                                <th>Film ID</th>
+                                <th>Title</th>
+                                <th>Genre</th>
+                                <th>Release Date</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {
+                                userFilms?.map(movie => (<tr>
+                                    <td>{movie.id}</td>
+                                    <td>{movie["original_title"]}</td>
+                                    <td>{movie["genre_ids"].
+                                        map(id => (<i>{data?.data?.genres?.find(genre => genre.id === id).name},</i>))}
+                                    </td>
+                                    <td>{movie["release_date"]?.split('-').reverse().join('/')}</td>
+                                    <td>
+
+                                        {user.favList.favFilms.some(film => film.id === movie.id) ? <FavoriteIcon onClick={(e) => clickFavButtons(e, "removeFav", movie.id, movie)} /> :
+                                            <FavoriteBorderIcon onClick={(e) => clickFavButtons(e, "addFav", movie.id, movie)} />}
+
+
+                                        {user.seenList.seenFilms.some(film => film.id === movie.id) ? <BookmarkIcon onClick={(e) => clickSeenButtons(e, "removeSeen", movie.id, movie)} /> :
+                                            <BookmarkBorderIcon onClick={(e) => clickSeenButtons(e, "addSeen", movie.id, movie)} />}
+
+                                    </td>
+
+                                </tr>))
+                            }
+
+                        </tbody>
+                    </TableContainer>
+
+                </div>
+            </div>
+
+        </div>
+    )
+}

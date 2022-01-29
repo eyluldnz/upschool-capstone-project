@@ -5,6 +5,7 @@ import { login } from '../../../reduxStore/authentication';
 import { mapUser } from '../../../reduxStore/userReducer';
 import { useLocation, useNavigate, Navigate } from 'react-router-dom';
 import user  from '../loginPage/user.json';
+import { Image } from 'react-bootstrap';
 
 export default function LoginPage() {
 
@@ -28,9 +29,11 @@ export default function LoginPage() {
     return (
         <div className='login-background text-center'>
             <div className='container  border rounded-pill login-page-container' >
+                
                 <div className='row m-5 justify-content-center'>
                     <form>
                     <Form className=' col-sm-12 col-md-6 offset-md-3 '>
+                   
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                             <Form.Label>Email address</Form.Label>
                             <Form.Control type="email" placeholder="name@example.com" onChange={(e) => setUserLogin(e.target.value)} />
