@@ -10,8 +10,8 @@ export default function MovieDetailContainer({movie,credits,movieId,...props}) {
 
   return <div className='container'>
       <div className="row">
-          <div className="col-12"> <MovieSummary movieSummary={movie} credits={credits}/></div>
-          <div className="col-12"><MovieCast movieId={movieId}/></div>
+          <div className="col-sm-12"> <MovieSummary movieSummary={movie} credits={credits}/></div>
+          <div className="col-sm-12"><MovieCast movieId={movieId}/></div>
           <div className="col-sm-12 col-md-6" style={{ overflowY: 'overlay' ,height:200 }}> 
           <h5>Reviews</h5>
           <MovieReviews movieId={movieId}/></div>

@@ -34,7 +34,8 @@ function NavBar({ ...props }) {
                         title="Movies"
 
                     >
-                        <CustamNavbarDropItem onClick={() => navigate("/popular")}>Popular Movies</CustamNavbarDropItem>
+                        <CustamNavbarDropItem onClick={() => {
+                            navigate("/popular")}}>Popular Movies</CustamNavbarDropItem>
                         <CustamNavbarDropItem onClick={() => navigate("/top_rated")}>Top Rated Movies</CustamNavbarDropItem>
 
 

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Card, ListGroup, ListGroupItem } from 'react-bootstrap'
+import { Card, ListGroup, ListGroupItem } from 'react-bootstrap';
+import {CustonLıstItem,ListDiv} from '../../../styledComponents/ListStyled';
 
 export default function MovieSummary({ movieSummary, credits, ...props }) {
 
@@ -7,17 +8,17 @@ export default function MovieSummary({ movieSummary, credits, ...props }) {
     return <div>
         <div className="container">
             <div className="row">
-                <div className="col-3">
+                <div className=" col-sm-12 col-md-3">
                     <Card>
                         <Card.Img variant="top" src={imageUrl} height={450} width={150} />
                     </Card>
                 </div>
-                <div className="col-9">
+                <div className=" col-sm-12 col-md-9">
                     <Card>
 
                         <Card.Body>
                             <Card.Title><Card.Text> {movieSummary["title"]}</Card.Text></Card.Title>
-                            <ListGroup className="list-group-flush">
+                            <ListDiv className="list-group-flush">
                                 <ListGroupItem> <Card.Text>
                                     <b>Genres:</b>{movieSummary["genres"]?.map(genre => <span>{" "}{genre.name}{","}</span>)}
 
@@ -40,7 +41,7 @@ export default function MovieSummary({ movieSummary, credits, ...props }) {
                                     <div className="container mt-2" style={{overflowY:'overlay',height:100}}>
                                         <div className="row">
 
-                                            {credits?.data?.crew?.map(person => (<div className="col-2">
+                                            {credits?.data?.crew?.map(person => (<div className=" col-sm-12 col-md-2">
                                                 <Card style={{ textAlign: 'center',height:100 }}   >
 
                                                     <Card.Body >
@@ -60,7 +61,7 @@ export default function MovieSummary({ movieSummary, credits, ...props }) {
 
                                 </Card.Text></ListGroupItem>
 
-                            </ListGroup>
+                            </ListDiv>
 
 
                         </Card.Body>

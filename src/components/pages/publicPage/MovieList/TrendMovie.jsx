@@ -3,6 +3,7 @@ import { ListGroup, ButtonGroup, ToggleButton } from 'react-bootstrap';
 import MovieCard from './MovieCard';
 import { useQuery } from 'react-query';
 import { fetchTrendByFilter } from '../../../../api';
+import {CustonLıstItem,ListDiv} from '../../../styledComponents/ListStyled'
 
 export default function TrendMovie() {
 
@@ -10,7 +11,7 @@ export default function TrendMovie() {
     const [checked, setChecked] = useState(false);
     const [radioValue, setRadioValue] = useState('day');
 
-    const {data,isLoading,...query} = useQuery('movies', () => fetchTrendByFilter(radioValue));
+    const {data,isLoading,...query} = useQuery(['movies',radioValue], () => fetchTrendByFilter(radioValue));
 
     if(isLoading){
         return <h1>Trend Yükleniyor</h1>
@@ -24,7 +25,7 @@ export default function TrendMovie() {
                     key={idx}
                     id={`radio-${idx}`}
                     type="radio"
-                    variant={idx % 2 ? 'outline-info' : 'outline-info'}
+                    variant={idx % 2 ? 'outline-warning' : 'outline-warning'}
                     name="radio"
                     value={radio.value}
                     checked={radioValue === radio.value}
@@ -35,12 +36,12 @@ export default function TrendMovie() {
             ))}
         </ButtonGroup>
         <div style={{ overflowX: 'overlay' }}>
-            <ListGroup horizontal={'sm'} style={{height:330}}>
+            <ListDiv horizontal={'sm'} style={{height:330}}>
                 {
-                    data?.data?.results?.map(data => <ListGroup.Item><MovieCard movie={data} /></ListGroup.Item>)
+                    data?.data?.results?.map(data => <CustonLıstItem><MovieCard movie={data} /></CustonLıstItem>)
                 }
 
-            </ListGroup>
+            </ListDiv>
         </div>
 
     </div>;

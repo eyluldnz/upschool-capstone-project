@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext,useEffect,useState } from 'react';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import ProtectRoute from './components/pages/ProtectRoute';
@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 import MovieDetail from './components/pages/publicPage/MovieDetail';
 import NavBar from './components/pages/publicPage/baseComponent/NavBar';
 import SortFilterPage from './components/pages/publicPage/movieFilter/SortFilterPage';
+import SortFilterPageTop from './components/pages/publicPage/movieFilter/SortFilterPageTop';
 import { ThemeProvider } from 'styled-components';
 import { ThemeContext, ThemeContextProvider } from './contexts/ThemeContext';
 import { styledTheme } from './components/styledComponents/styledTheme'
@@ -17,8 +18,15 @@ import { styledTheme } from './components/styledComponents/styledTheme'
 function App() {
 
   const state = useSelector(state => state.authentication);
+  const [location, setLocation] = useState("");
 
-  const { themeName } = useContext(ThemeContext);
+  
+   const { themeName, setThemeName } = useContext(ThemeContext);
+
+    useEffect(()=>{
+        document.body.style.backgroundColor=themeName==='light'?'rgba(246, 229, 141,0.4)':'grey';
+
+    },[themeName])
 
   return (
     <div>
@@ -28,7 +36,7 @@ function App() {
       <ThemeProvider theme={styledTheme[themeName]}>
 
      
-      <NavBar />
+      <NavBar setLocation={setLocation} />
       <Routes>
         <Route path="/login" element={<LoginPage />} />
 
@@ -61,7 +69,7 @@ function App() {
           path="/popular"
           element={
             <ProtectRoute auth={state.isLoading}>
-              <SortFilterPage />
+              <SortFilterPage locationName={location}/>
             </ProtectRoute>
           }
         />
@@ -69,7 +77,7 @@ function App() {
           path="/top_rated"
           element={
             <ProtectRoute auth={state.isLoading}>
-              <SortFilterPage />
+              <SortFilterPageTop locationName={location}/>
             </ProtectRoute>
           }
         />

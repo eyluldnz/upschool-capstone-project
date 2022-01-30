@@ -2,6 +2,8 @@ import React, { useState,useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import MovieCard from '../MovieList/MovieCard';
 import Paginate from './Paginate';
+import { CustonP } from '../../../styledComponents/ListStyled';
+
 
 export default function SearchContainer() {
 
@@ -40,6 +42,7 @@ export default function SearchContainer() {
     return <div className='container'>
         <div className="row">
             <div className="col-12">
+            <CustonP className='text-center'>Seacrh Results</CustonP>
                 <div className="container">
                     <div className="row">
                     {searchDatafiltered.map(data=> <div className="col-3"><MovieCard movie={data}/></div>)}

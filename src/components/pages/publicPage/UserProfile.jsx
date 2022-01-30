@@ -3,6 +3,7 @@ import { useQuery } from 'react-query'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchGenres } from '../../../api';
 import { TableContainer, TableFilter, FilterOption } from '../../styledComponents/UserTableComponents'
+import { CustonP } from '../../styledComponents/ListStyled'
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
@@ -88,16 +89,27 @@ export default function UserProfile() {
     }
     console.log(data)
     return (
-        <div className='container' style={{ bottom: 0, maxHeight: '100%' }}>
+        <div className='container' style={{ bottom: 0, maxHeight: '100%', marginTop: 10 }}>
+            <CustonP className='text-center'>User Results</CustonP>
             <div className="row">
                 <div className="col-12 mt-5">
-                    <TableFilter onChange={handleSelect}>
-                        <FilterOption value={0}>Select</FilterOption>
-                        <FilterOption value={1}>Closest Release Date</FilterOption>
-                        <FilterOption value={2}>Favourites</FilterOption>
-                        <FilterOption value={3}>SeenList</FilterOption>
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-sm-12 col-md-6">
 
-                    </TableFilter>
+                            </div>
+                            <div className="col-sm-12 col-md-6">
+                                <TableFilter onChange={handleSelect}>
+                                    <FilterOption value={0}>Select</FilterOption>
+                                    <FilterOption value={1}>Closest Release Date</FilterOption>
+                                    <FilterOption value={2}>Favourites</FilterOption>
+                                    <FilterOption value={3}>SeenList</FilterOption>
+
+                                </TableFilter>
+                            </div>
+                        </div>
+                    </div>
+
                     <TableContainer>
 
                         <thead>

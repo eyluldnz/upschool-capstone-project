@@ -9,6 +9,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import {addFavFilm,removeFavFilm,addSeenFilm,removeSeenFilm} from '../../../../reduxStore/userReducer'
 import { ThemeContext } from '../../../../contexts/ThemeContext';
+import {CustonLıstItem,ListDiv} from '../../../styledComponents/ListStyled'
 
 
 export default function MovieCard({ movie, widthCard, ...props }) {
@@ -62,9 +63,9 @@ export default function MovieCard({ movie, widthCard, ...props }) {
                     <div className="row">
                         <div className="col-12 mb-3" onClick={clickCardHandler}>
                             <Card.Title style={{ fontSize: 14, marginBottom: 5 }}>{movie["original_title"]}</Card.Title>
-                            <ListGroup className="list-group-flush">
+                            <CustonLıstItem className="list-group-flush">
                                 {movie["release_date"]?.split('-').reverse().join('/')}
-                            </ListGroup>
+                            </CustonLıstItem>
                         </div>
 
                         <div className="col-6">

@@ -6,6 +6,7 @@ import DiscoverMovie from './MovieList/DiscoverMovie';
 import SearchForm from './SearchForm';
 import SearchContainer from '../publicPage/searchComponents/SearchContainer'
 import { useSelector } from 'react-redux';
+import {CustonP} from '../../styledComponents/ListStyled'
 
 
 export default function Home() {
@@ -26,9 +27,11 @@ export default function Home() {
                 {
                     searchResult.length > 0 ? <SearchContainer /> :
                         <>  <div className="col-12 my-5" style={{ overflowX: 'overlay' }}>
+                           <CustonP className='text-center'>Discover Movies</CustonP>
                             <DiscoverMovie />
                         </div>
                             <div className="col-12" >
+                            <CustonP className='text-center'>Trend Movies</CustonP>
                                 <TrendMovie />
                             </div>
                         </>

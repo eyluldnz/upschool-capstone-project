@@ -25,7 +25,8 @@ export const styledTheme={
 
         cards:{
             backgroundColor:"rgba(127, 140, 141,0.7)"
-        }
+        },
+        cardListBackground:"rgba(246, 229, 141,0.4)",
 
     },
     dark:{
@@ -45,6 +46,7 @@ export const styledTheme={
 
         cards:{
             backgroundColor:"rgba(241, 196, 15,0.7)"
-        }
+        },
+        cardListBackground:"grey",
     }
 }

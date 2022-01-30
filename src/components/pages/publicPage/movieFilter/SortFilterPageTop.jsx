@@ -4,10 +4,10 @@ import GenreContainer from './GenreContainer';
 import MovieCard from '../MovieList/MovieCard';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import {StyledDiv,DivButtons} from '../../../styledComponents/DivStyledColor';
+import {StyledDiv,DivButtons} from '../../../styledComponents/DivStyledColor'
 import {CustonP} from '../../../styledComponents/ListStyled'
 
-export default function SortFilterPage({}) {
+export default function SortFilterPageTop({}) {
 
   const globalLocation = useLocation();
   const [movies, setMovies] = useState([]);
@@ -161,7 +161,7 @@ export default function SortFilterPage({}) {
   console.log(movies)
   return <div>
     <div className="container my-5 ">
-    <CustonP className='text-center'>Popular Movies</CustonP>
+    <CustonP className='text-center'>Top Rated Movies</CustonP>
       <div className="row">
         <div className="col-sm-12 col-md-12 col-lg-3 ">
           <StyledDiv className="container ">

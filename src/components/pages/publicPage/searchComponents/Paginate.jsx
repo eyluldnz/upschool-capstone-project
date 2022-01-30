@@ -1,6 +1,7 @@
 import React,{useContext} from 'react';
 import ReactPaginate from 'react-paginate';
 
+
 export default function Paginate({setCurrentPage,pageCount}) {
     
     const handlePageClick = async (data) => {
@@ -11,7 +12,7 @@ export default function Paginate({setCurrentPage,pageCount}) {
     };
     
     return (
-        <div>
+        <div className='m-5'>
  <ReactPaginate
                     previousLabel={"Previous"}
                     nextLabel={"Next"}
