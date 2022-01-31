@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://api.themoviedb.org/3';
+const BASE_URL = 'https://api.themoviedb.org/3';
 
 const BASE_AXIOS = axios.create({
     baseURL: BASE_URL,

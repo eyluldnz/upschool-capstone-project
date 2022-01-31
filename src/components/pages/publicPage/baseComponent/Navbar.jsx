@@ -55,8 +55,10 @@ function NavBar({ ...props }) {
                                 <div className="col-2 mt-2">
                                     <ThemeChanger />
                                 </div>
+                                
                                 <div className="col-2 me-2 ">
-
+                                {
+                                        isLoading ?
                                     <NavDropdown
                                         className='pb-2'
                                         id="nav-dropdown-light-example"
@@ -69,6 +71,8 @@ function NavBar({ ...props }) {
 
 
                                     </NavDropdown>
+                                    : null
+                                }
                                 </div>
                                 <div className="col-6 ms-3 pt-1 mt-1">
                                     {

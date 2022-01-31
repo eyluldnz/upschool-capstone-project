@@ -20,7 +20,9 @@ export default function MovieDetail() {
     </h1>
     }
     
-  return <div className='my-5'>
-      <MovieDetailContainer movie={data?.data} credits={credits} movieId={movieId}/>
+  return <div className='my-5'>{
+    data?.data ?  <MovieDetailContainer movie={data?.data} credits={credits} movieId={movieId}/> :<></>
+  }
+      
   </div>;
 }
