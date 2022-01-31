@@ -11,14 +11,15 @@ export default function SearchForm() {
     const handleSearch=(e)=>{
         e.preventDefault();
         if(searchValue!==""){
-            fetch("https://api.themoviedb.org/3/search/movie?api_key=38c02880f9f69c49ba83e5b023f7dc67&query="+ searchValue.toString()).
-            then(res=>res.json()).
-            then(data=>{
-                dispatch(addResults(data?.results));
-               
-            })
-            setTimeout(()=>dispatch(addHistory(searchValue)),7000)
-            ;
+            setTimeout(()=>{
+                fetch("https://api.themoviedb.org/3/search/movie?api_key=38c02880f9f69c49ba83e5b023f7dc67&query="+ searchValue.toString()).
+                then(res=>res.json()).
+                then(data=>{
+                    dispatch(addResults(data?.results));
+                   
+                })
+                setTimeout(()=>dispatch(addHistory(searchValue)),7000);
+            },3000)
         }
     }
 

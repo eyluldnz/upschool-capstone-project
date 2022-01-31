@@ -1,4 +1,5 @@
 import user from '../components/pages/loginPage/user.json';
+import {  toast } from 'react-toastify';
 
 
 const LOGIN = "LOGIN";
@@ -14,13 +15,7 @@ export const login = (loginUser) => {
         };
     
     }
-    else{
-        return{
-            type: LOGOUT
-        };
-    }
-
-
+  
 };
 
 export const logout = () => ({
@@ -28,7 +23,7 @@ export const logout = () => ({
 });
 
 const authenticationReducer = (auth = {
-    isLoading: false
+    isLoading: null
 }, action) => {
     switch (action.type) {
         case LOGIN:

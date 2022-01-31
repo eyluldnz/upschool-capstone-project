@@ -7,13 +7,15 @@ import LoginPage from './components/pages/loginPage/LoginPage';
 import bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
 import UserProfile from './components/pages/publicPage/UserProfile';
 import { useSelector } from 'react-redux';
+import { ToastContainer,toast} from 'react-toastify';
 import MovieDetail from './components/pages/publicPage/MovieDetail';
 import NavBar from './components/pages/publicPage/baseComponent/NavBar';
 import SortFilterPage from './components/pages/publicPage/movieFilter/SortFilterPage';
 import SortFilterPageTop from './components/pages/publicPage/movieFilter/SortFilterPageTop';
 import { ThemeProvider } from 'styled-components';
 import { ThemeContext, ThemeContextProvider } from './contexts/ThemeContext';
-import { styledTheme } from './components/styledComponents/styledTheme'
+import { styledTheme } from './components/styledComponents/styledTheme';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
@@ -26,8 +28,9 @@ function App() {
     useEffect(()=>{
         document.body.style.backgroundColor=themeName==='light'?'rgba(246, 229, 141,0.4)':'grey';
 
-    },[themeName])
+    },[themeName]);
 
+    
   return (
     <div>
      
@@ -84,7 +87,7 @@ function App() {
 
       </Routes>
       </ThemeProvider>
-      
+
     </div>
   );
 }

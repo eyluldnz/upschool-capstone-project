@@ -5,7 +5,7 @@ const ProtectRoute=({ auth,component:Component,children, ...rest })=> {
 
     let location=useLocation();
 
-    return auth ?(
+    return auth?(
         children
       ) : (
         <Navigate to="/login" state={{ from: location }} />

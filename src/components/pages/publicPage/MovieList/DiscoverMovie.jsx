@@ -10,7 +10,11 @@ export default function DiscoverMovie() {
     const [trendData,setTrendData]=useState([]);
 
     if(isLoading){
-        return <h4>Yükleniyor</h4>
+        return <div class="text-center ">
+        <div class="spinner-border text-warning" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
     }
   
     return <ListDiv>

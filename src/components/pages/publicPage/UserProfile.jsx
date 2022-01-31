@@ -85,7 +85,11 @@ export default function UserProfile() {
 
 
     if (isLoading) {
-        return <h1>Yükleniyor</h1>
+        return <div class="text-center ">
+        <div class="spinner-border text-warning" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
     }
     console.log(data)
     return (

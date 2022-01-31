@@ -14,7 +14,11 @@ export default function TrendMovie() {
     const {data,isLoading,...query} = useQuery(['movies',radioValue], () => fetchTrendByFilter(radioValue));
 
     if(isLoading){
-        return <h1>Trend Yükleniyor</h1>
+        return <div class="text-center ">
+        <div class="spinner-border text-warning" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
     }
 
 
