@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { ListGroup, ButtonGroup, ToggleButton } from 'react-bootstrap';
+import React, { useState } from 'react';
+import {  ButtonGroup, ToggleButton } from 'react-bootstrap';
 import MovieCard from './MovieCard';
 import { useQuery } from 'react-query';
 import { fetchTrendByFilter } from '../../../../api';
@@ -7,11 +7,9 @@ import {CustonLıstItem,ListDiv} from '../../../styledComponents/ListStyled'
 
 export default function TrendMovie() {
 
-    const [trendData, setTrendData] = useState([]);
-    const [checked, setChecked] = useState(false);
     const [radioValue, setRadioValue] = useState('day');
 
-    const {data,isLoading,...query} = useQuery(['movies',radioValue], () => fetchTrendByFilter(radioValue));
+    const {data,isLoading} = useQuery(['movies',radioValue], () => fetchTrendByFilter(radioValue));
 
     if(isLoading){
         return <div class="text-center ">

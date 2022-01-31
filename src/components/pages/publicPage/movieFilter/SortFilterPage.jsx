@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import GenreContainer from './GenreContainer';
 import MovieCard from '../MovieList/MovieCard';
 import DatePicker from "react-datepicker";
@@ -7,13 +7,11 @@ import "react-datepicker/dist/react-datepicker.css";
 import {StyledDiv,DivButtons} from '../../../styledComponents/DivStyledColor';
 import {CustonP} from '../../../styledComponents/ListStyled'
 
-export default function SortFilterPage({}) {
+export default function SortFilterPage() {
 
   const globalLocation = useLocation();
   const [movies, setMovies] = useState([]);
   const [loadCounter, setLoadCounter] = useState(1);
-  const [lastLoadPage, setLastLoadPage] = useState(0);
-  const [isFillFilter, setIsFillFilter] = useState(false);
   const [filter, setFilter] = useState({
     sort: [
 
@@ -37,8 +35,6 @@ export default function SortFilterPage({}) {
   }, []);
 
   useEffect(() => {
-
-    let fetchedData = [];
 
     fetch(`https://api.themoviedb.org/3/movie${globalLocation.pathname}?api_key=38c02880f9f69c49ba83e5b023f7dc67&page=${loadCounter}`).
       then(res => res.json()).

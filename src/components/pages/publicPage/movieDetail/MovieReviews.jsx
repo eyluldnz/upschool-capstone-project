@@ -1,14 +1,11 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 import { fetchReview } from '../../../../api';
-import { Card, ListGroup, ListGroupItem, Image } from 'react-bootstrap';
-import { Comment, Tooltip, Avatar, } from 'antd';
-import moment from 'moment';
+import { ListGroup, Image } from 'react-bootstrap';
 
 export default function MovieReviews({ movieId, ...props }) {
-    const { data, isLoading, ...query } = useQuery("reviews", () => fetchReview(movieId));
+    const { data } = useQuery("reviews", () => fetchReview(movieId));
 
-    const ImgUrl = "https://image.tmdb.org/t/p/original/"
     return <div>
 
         <ListGroup  >

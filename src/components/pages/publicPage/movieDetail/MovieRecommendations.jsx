@@ -1,11 +1,11 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 import { fetcRecommandation } from '../../../../api';
-import { Card, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { Card, ListGroup } from 'react-bootstrap';
 
 export default function MovieRecommendations({ movieId, ...props }) {
 
-    const { data, isLoading, ...query } = useQuery("recommandations", () => fetcRecommandation(movieId));
+    const { data} = useQuery("recommandations", () => fetcRecommandation(movieId));
 
     const posterUrl = "https://image.tmdb.org/t/p/original/"
     return <div>

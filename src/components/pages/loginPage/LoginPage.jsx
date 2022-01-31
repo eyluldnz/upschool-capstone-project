@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import {  useDispatch } from 'react-redux';
 import { Form } from 'react-bootstrap';
 import { login } from '../../../reduxStore/authentication';
 import { mapUser } from '../../../reduxStore/userReducer';
-import { useLocation, useNavigate, Navigate } from 'react-router-dom';
+import {  useNavigate, } from 'react-router-dom';
 import user  from '../loginPage/user.json';
-import { Image } from 'react-bootstrap';
 import { ToastContainer , toast } from 'react-toastify';
 
 export default function LoginPage() {
